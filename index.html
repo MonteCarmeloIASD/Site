@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adventistas Monte Carmelo Oficial
+  </title>
+  <style>
+    /* Estilo para o fundo da página */
+    body {
+      background-image: url(fundo/2.png); /* Substitua pelo caminho da sua imagem */
+      background-size: 100%;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Layout da página */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      height: 1080px;
+    }
+
+    /* Estilo para os blocos */
+    .left-block, .right-block {
+      width: 48%;
+      padding: 5px;
+      background-color: rgba(255, 255, 255, 0.1); /* Fundo translúcido */
+      border-radius: 8px;
+    }
+
+    /* Estilo do carrossel */
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .carousel .slides {
+      display: flex;
+      transition: transform 0.9s ease;
+    }
+
+    /* Estilo dos controles do carrossel */
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .carousel-control-left {
+      left: 0;
+    }
+
+    .carousel-control-right {
+      right: 0;
+    }
+
+    /* Estilo do player do YouTube */
+    iframe {
+      width: 900px;
+      height: 506px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Bloco esquerdo com carrossel -->
+    <div class="left-block">
+      <div class="carousel">
+        <div class="slides">
+          <img src="carrossel/1.webp" alt="Imagem 1">
+          <img src="carrossel/2.webp" alt="Imagem 2">
+          <img src="carrossel/3.webp" alt="Imagem 3">
+          <img src="carrossel/4.webp" alt="Imagem 4">
+          <img src="carrossel/5.webp" alt="Imagem 5">
+        </div>
+        <button class="carousel-control carousel-control-left" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-control carousel-control-right" onclick="moveCarousel(1)">&#10095;</button>
+      </div>
+    </div>
+
+    <!-- Bloco direito com player do YouTube -->
+    <div class="right-block">
+        <iframe width="900" height="506" src="https://www.youtube.com/embed/wHtIFyCBIDQ?si=eBq28yPszttc1hlS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Função para mover o carrossel
+    let currentIndex = 0;
+
+    function moveCarousel(direction) {
+      const slides = document.querySelector('.carousel .slides');
+      const totalSlides = document.querySelectorAll('.carousel img').length;
+      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Função para iniciar o carrossel automático
+    function startAutoCarousel() {
+      setInterval(() => {
+        moveCarousel(1); // Move para a próxima imagem automaticamente
+      }, 10000); // Intervalo de 10 segundos (10000 ms)
+    }
+
+    // Iniciar o carrossel automático assim que a página for carregada
+    window.onload = startAutoCarousel;
+  </script>
+
+</body>
+</html>
